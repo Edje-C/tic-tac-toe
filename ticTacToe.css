@@ -1,66 +1,97 @@
-body{
+body {
     text-align: center;
     font-family: 'Lato', sans-serif;    
     background-color: #2C2B3C;
     color: #EAF0CE;
 }
 
-p{
+p {
     color: #2C2B3C;
     font-size: 2vw;
     display: inline;
 }
 
-header{
+header {
     text-align: left;
     height: 5vw;
 }
 
-button{
-    float: right;
-    border: none;
+button {
+    width: 8vw;
     height: 4vw;
     font-size: 1vw;
+    float: right;
+    border: none;
     font-weight: 500;
-    width: 8vw;
     outline: none;
     background-color: yellow;
     color: #787882;
     outline: none;
 }
 
-button:hover{
+button:hover {
     background-color: #EAF0CE;
 }
 
-.center{
+.center {
     width: 46vw;
     margin: 2% 25vw;
 }
 
-.col{
+.col {
     float: left;
 }
 
-.col:nth-of-type(2){
+.col:nth-of-type(2) {
     border-width: 1px;
     border-style: none solid;
     border-color: yellow;
 }
 
-.cell:nth-of-type(2){
+.cell:nth-of-type(2) {
     border-width: 1px;
     border-style: solid none;
     border-color: yellow;
 }
 
-.cell{
+.cell {
     width: 15vw;
     height: 15vw;
     text-align: center;
     font-size: 12vw;
 }
 
-#box{
+#box {
     height: 45vw;
+}
+
+@media (max-width: 1050px) {
+
+    .center{
+        width: 91vw;
+        margin-left: 2.5vw;
+    }
+
+    .cell {
+        width: 30vw;
+        height: 30vw;
+        font-size: 25vw;
+    }
+
+    header{
+        height: 10vw;
+        padding: 5vw 0; 
+    }
+
+    p{
+        font-size: 4vw;
+    }
+
+    button{
+        width: 20vw;
+        height: 8vw;
+        font-size: 3vw;
+        
+    }
+
 }
