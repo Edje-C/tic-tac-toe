@@ -1,5 +1,7 @@
 cells = document.querySelectorAll(".cell")
-btn = document.querySelector("button")
+playAgain = document.querySelector("#play-again")
+friend = document.querySelector("#friend")
+computer = document.querySelector("#computer")
 p = document.querySelector("p")
 x = ""
 o = ""
@@ -87,11 +89,11 @@ function winScreen(player){
 }
 
 
-let swt = true
+let swt = true;
 let playerWin;
-let clicks = 0
+let clicks = 0;
 
-btn.addEventListener("click", function(){
+playAgain.addEventListener("click", function(){
     p.style.color = "#2C2B3C"
     x = ""
     o = ""
@@ -104,34 +106,44 @@ btn.addEventListener("click", function(){
     });
 })
 
-cells.forEach(function(v, i) {
-    v.addEventListener("click", function(e){
-        if(v.innerText === "" && !playerWin){
-            if (swt) { 
-                v.innerText = "X"
-                clicks +=1
-                x += e.target.dataset.cell
-                x = x.split("").sort(function(a,b){return a-b}).join("")
-                if(win(x)){
-                    winScreen("X")
-                }
-                playerWin = win(x) || win(o)
-            } else { 
-                v.innerText = "O"
-                clicks +=1
-                o += e.target.dataset.cell
-                o = o.split("").sort(function(a,b){return a-b}).join("")
-                console.log(win(o))
-                if(win(o)){
-                    winScreen("O")
-                }
-                playerWin = win(x) || win(o)
-            }
-            swt = !swt
-        }
-        if(clicks === 9 && !playerWin) {
-            winScreen()
-        }
-    })
+friend.addEventListener("click", function(){
+    friend.style.visibility = "hidden"
+    computer.style.visibility = "hidden"
+    document.querySelector("#choose").style.height = "0"
+    document.querySelector("#choose").style.margin = "0"
 
-});
+    document.querySelector("#box").style.visibility = "visible"
+    playAgain.style.visibility = "visible"
+
+    cells.forEach(function(v, i) {
+        v.addEventListener("click", function(e){
+            if(v.innerText === "" && !playerWin){
+                if (swt) { 
+                    v.innerText = "X"
+                    clicks +=1
+                    x += e.target.dataset.cell
+                    x = x.split("").sort(function(a,b){return a-b}).join("")
+                    if(win(x)){
+                        winScreen("X")
+                    }
+                    playerWin = win(x) || win(o)
+                } else { 
+                    v.innerText = "O"
+                    clicks +=1
+                    o += e.target.dataset.cell
+                    o = o.split("").sort(function(a,b){return a-b}).join("")
+                    console.log(win(o))
+                    if(win(o)){
+                        winScreen("O")
+                    }
+                    playerWin = win(x) || win(o)
+                }
+                swt = !swt
+            }
+            if(clicks === 9 && !playerWin) {
+                winScreen()
+            }
+        })
+    });
+})
+

@@ -1,4 +1,5 @@
 body {
+    margin: 0;
     text-align: center;
     font-family: 'Lato', sans-serif;    
     background-color: #2C2B3C;
@@ -14,19 +15,37 @@ p {
 header {
     text-align: left;
     height: 5vw;
+    background-color: inherit;
 }
 
-button {
-    width: 8vw;
-    height: 4vw;
-    font-size: 1vw;
-    float: right;
-    border: none;
-    font-weight: 500;
-    outline: none;
+button{
     background-color: yellow;
     color: #787882;
+    font-weight: 500;
+    border: none;
     outline: none;
+    padding: 0 2vw;
+}
+
+#play-again {
+    font-size: 1vw;
+    height: 4vw;
+    float: right;
+    visibility: hidden;
+}
+
+#friend, #computer{
+    width: 30vw;
+    height: 6vw;
+    font-size: 2vw;
+}
+
+#computer{
+    margin-left: 5vw;
+}
+
+#choose{
+    margin-top: 30vh;
 }
 
 button:hover {
@@ -35,7 +54,7 @@ button:hover {
 
 .center {
     width: 46vw;
-    margin: 2% 25vw;
+    margin: 1% 25vw;
 }
 
 .col {
@@ -63,6 +82,7 @@ button:hover {
 
 #box {
     height: 45vw;
+    visibility: hidden;
 }
 
 @media (max-width: 1050px) {
@@ -80,18 +100,22 @@ button:hover {
 
     header{
         height: 10vw;
-        padding: 5vw 0; 
+        /* padding: 5vw 0;  */
     }
 
     p{
         font-size: 4vw;
     }
 
-    button{
-        width: 20vw;
+    #play-again{
         height: 8vw;
         font-size: 3vw;
-        
+    }
+
+    #friend, #computer{
+        width: 40vw;
+        height: 12vw;
+        font-size: 3vw;
     }
 
 }
