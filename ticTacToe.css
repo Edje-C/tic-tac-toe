@@ -89,7 +89,7 @@ button:hover {
 
     .center{
         width: 91vw;
-        margin-left: 2.5vw;
+        margin-left: 4.5vw;
     }
 
     .cell {
@@ -100,7 +100,7 @@ button:hover {
 
     header{
         height: 10vw;
-        /* padding: 5vw 0;  */
+        padding: 5vw 0;
     }
 
     p{
