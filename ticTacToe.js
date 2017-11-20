@@ -78,7 +78,7 @@ function winScreen(player){
     if(player){
          p.innerText = "Player " + player + " wins!"
          cells.forEach(function(v){
-             if(!winningCells.includes(v.dataset.cell)){
+             if(!winningCells.includes(v.id)){
                 v.style.color = "#787882"
             }
          })
@@ -121,7 +121,7 @@ friend.addEventListener("click", function(){
                 if (swt) { 
                     v.innerText = "X"
                     clicks +=1
-                    x += e.target.dataset.cell
+                    x += e.target.id
                     x = x.split("").sort(function(a,b){return a-b}).join("")
                     if(win(x)){
                         winScreen("X")
@@ -130,9 +130,9 @@ friend.addEventListener("click", function(){
                 } else { 
                     v.innerText = "O"
                     clicks +=1
-                    o += e.target.dataset.cell
+                    o += e.target.id
                     o = o.split("").sort(function(a,b){return a-b}).join("")
-                    console.log(win(o))
+                    console.log(win(o), win(x))
                     if(win(o)){
                         winScreen("O")
                     }
@@ -146,4 +146,3 @@ friend.addEventListener("click", function(){
         })
     });
 })
-
