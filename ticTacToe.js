@@ -74,19 +74,20 @@ function win(str){
 
 }
 
+// winScreen = 
+
 function winScreen(player){
-    p.style.color = "#EAF0CE"
     if(player){
          p.innerText = "Player " + player + " wins!"
-         cells.forEach(function(v){
-             if(!winningCells.includes(v.id)){
-                v.style.color = "#787882"
-            }
-         })
-
+         setTimeout(() => cells.forEach(function(v){
+            if(!winningCells.includes(v.id)){
+               v.style.color = "#787882"
+           }
+        }), 500)
     }else{
         p.innerText = "Draw!"
     }
+    setTimeout(() => p.style.color = "#EAF0CE", 500)
 }
 
 
@@ -113,8 +114,8 @@ friend.addEventListener("click", function(){
     document.querySelector("#choose").style.height = "0";
     document.querySelector("#choose").style.margin = "0";
 
-    document.querySelector("#box").style.visibility = "visible";
-    playAgain.style.visibility = "visible";
+    document.querySelector("#box").style.display = "inherit";
+    playAgain.style.display = "inherit";
 
     cells.forEach(function(v, i) {
         v.addEventListener("click", function(e){
@@ -155,8 +156,8 @@ computer.addEventListener("click", function(){
     document.querySelector("#choose").style.height = "0";
     document.querySelector("#choose").style.margin = "0";
 
-    document.querySelector("#box").style.visibility = "visible";
-    playAgain.style.visibility = "visible";
+    document.querySelector("#box").style.display = "inherit";
+    playAgain.style.display = "inherit";
 
     function makeMove(move){
         setTimeout(function(){
@@ -189,7 +190,7 @@ computer.addEventListener("click", function(){
             nums = nums.concat(possibleWins([{i: 1, wins: [3]}]))
         }
         if(str.includes("2")){
-            nums = nums.concat(possibleWins([{i: 2, wins: [2,3]}]))
+            nums = nums.concat(possibleWins([{i: 2, wins: [2,3]}, {i: 0, wins: [1]}]))
         }
         if(str.includes("3")){
             nums = nums.concat(possibleWins([{i: 3, wins: [1]},{i: 0, wins: [1]}]))
@@ -264,6 +265,7 @@ computer.addEventListener("click", function(){
                         console.log(getNumbers(x))
                         block(getNumbers(x), x)
                         clicks +=1;
+                        o = o.split("").sort(function(a,b){return a-b}).join("")
                         if(win(o)){
                             winScreen("O")
                         }

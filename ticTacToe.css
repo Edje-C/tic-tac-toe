@@ -9,12 +9,13 @@ body {
 p {
     color: #2C2B3C;
     font-size: 2vw;
-    display: inline;
+    display: inline-block;
+    margin: 1vh;
 }
 
 header {
     text-align: left;
-    height: 5vw;
+    height: 8vh;
     background-color: inherit;
 }
 
@@ -27,11 +28,17 @@ button{
     padding: 0 2vw;
 }
 
+footer{
+    position: absolute;
+    margin-left: 70vw;
+    width: 30vw;
+}
+
 #play-again {
     font-size: 1vw;
     height: 4vw;
     float: right;
-    visibility: hidden;
+    display: none;
 }
 
 #friend, #computer{
@@ -81,8 +88,8 @@ button:hover {
 }
 
 #box {
-    height: 45vw;
-    visibility: hidden;
+    height: 77vh;
+    display: none;
 }
 
 @media (max-width: 1050px) {
@@ -99,7 +106,7 @@ button:hover {
     }
 
     header{
-        height: 10vw;
+        height: 8vh;
         padding: 5vw 0;
     }
 
