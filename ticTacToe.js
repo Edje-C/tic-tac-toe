@@ -9,6 +9,18 @@ o = ""
 
 let winningCells;
 
+document.querySelector("footer").addEventListener("click", (e) => {
+    if(document.querySelector("span").innerText === "computer"){
+        playAgain.click()
+        // cells.forEach(v => v.removeEventListener('click', document.querySelector("footer").click(), ))
+        computerGame()
+    }else{
+        playAgain.click()
+        // cells.forEach(v => v.removeEventListener('click', document.querySelector("footer").click(), ))
+        friendGame()
+    }
+})
+
 function checkForWin(str, winningNums){
     matches = str.split("").filter(function(v){
         return winningNums.includes(v)
@@ -108,9 +120,11 @@ playAgain.addEventListener("click", function(){
     });
 })
 
-friend.addEventListener("click", function(){
+friendGame = () => {
     friend.style.visibility = "hidden";
     computer.style.visibility = "hidden";
+    document.querySelector("span").innerText = "computer"
+    document.querySelector("footer").style.visibility = "inherit";
     document.querySelector("#choose").style.height = "0";
     document.querySelector("#choose").style.margin = "0";
 
@@ -134,7 +148,6 @@ friend.addEventListener("click", function(){
                     clicks +=1
                     o += e.target.id
                     o = o.split("").sort(function(a,b){return a-b}).join("")
-                    console.log(win(o), win(x))
                     if(win(o)){
                         winScreen("O")
                     }
@@ -147,12 +160,14 @@ friend.addEventListener("click", function(){
             }
         })
     });
-})
+}   
 
-    
-computer.addEventListener("click", function(){
+
+computerGame = () => {
     friend.style.visibility = "hidden";
     computer.style.visibility = "hidden";
+    document.querySelector("span").innerText = "friend"
+    document.querySelector("footer").style.visibility = "inherit";
     document.querySelector("#choose").style.height = "0";
     document.querySelector("#choose").style.margin = "0";
 
@@ -166,7 +181,7 @@ computer.addEventListener("click", function(){
         o+=move;
         swt = !swt
     }
-   
+
     function possibleWins(arr){
         posWinsArr = [];
         arr.forEach(function(v){
@@ -228,17 +243,15 @@ computer.addEventListener("click", function(){
                 num = nums
             }
         })
-        if(num !== undefined){
-           num = Number(num)
-           console.log(num)
-            makeMove(num)
-        }else{
-            return null
-        }
+        return num
     }
 
-    function AI(arr){
-        return arr
+    function AIMove(arr){
+        cells.forEach(v => {
+            arr.filter(val => {
+                
+            })
+        })
     }
 
     cells.forEach(function(v, i) {
@@ -262,8 +275,12 @@ computer.addEventListener("click", function(){
                         }
                         clicks +=1;
                     }else{
-                        console.log(getNumbers(x))
-                        block(getNumbers(x), x)
+                        blockMove = block(getNumbers(x), x)
+                        if(blockMove){
+                            makeMove(blockMove)
+                        }else{
+                            console.log(getNumbers(o))
+                        }
                         clicks +=1;
                         o = o.split("").sort(function(a,b){return a-b}).join("")
                         if(win(o)){
@@ -281,4 +298,9 @@ computer.addEventListener("click", function(){
             }
         })
     });
-})
+}
+
+friend.addEventListener("click", friendGame)
+
+computer.addEventListener("click", computerGame)
+    

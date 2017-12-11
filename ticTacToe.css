@@ -32,6 +32,7 @@ footer{
     position: absolute;
     margin-left: 70vw;
     width: 30vw;
+    visibility: hidden;
 }
 
 #play-again {
