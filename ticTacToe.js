@@ -233,14 +233,19 @@ computerGame = () => {
     }
     
     function block(arr, x){
-        let num;
+        let num = {
+            moves: [],
+            block: 0
+        };
         arr.forEach(function(v){
             v = v.split("")
-            let nums = v.filter((val) => {
+            let nums = (v.filter((val) => {
                 return !x.includes(val)
-            })
-            if(nums.length === 1 && document.getElementById(nums[0]).innerText === ""){
-                num = nums
+            }))
+            if(nums.length===1 && document.getElementById(nums[0]).innerText === ""){
+                num.block = nums[0]
+            }else{
+                num.moves.push(nums)
             }
         })
         return num
@@ -249,7 +254,7 @@ computerGame = () => {
     function AIMove(arr){
         cells.forEach(v => {
             arr.filter(val => {
-                
+                console.log(v)
             })
         })
     }
@@ -275,12 +280,18 @@ computerGame = () => {
                         }
                         clicks +=1;
                     }else{
-                        blockMove = block(getNumbers(x), x)
+                        blockMove = block(getNumbers(o), o).block
                         if(blockMove){
                             makeMove(blockMove)
                         }else{
-                            console.log(getNumbers(o))
+                            blockMove = block(getNumbers(x), x).block
+                            if(blockMove){
+                                makeMove(blockMove)
+                            }else{
+                                console.log(block(getNumbers(x),x), getNumbers(o))
+                            }
                         }
+
                         clicks +=1;
                         o = o.split("").sort(function(a,b){return a-b}).join("")
                         if(win(o)){

@@ -26,6 +26,7 @@ button{
     border: none;
     outline: none;
     padding: 0 2vw;
+    border-radius: 2.5px;
 }
 
 footer{
