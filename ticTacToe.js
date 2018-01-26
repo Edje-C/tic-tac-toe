@@ -86,7 +86,6 @@ function win(str){
 
 }
 
-// winScreen = 
 
 function winScreen(player){
     if(player){
@@ -113,6 +112,7 @@ playAgain.addEventListener("click", function(){
     o = ""
     clicks = 0
     playerWin = false;
+    swt=true;
 
     cells.forEach(function(v) {
         v.innerText = ""
@@ -134,7 +134,7 @@ friendGame = () => {
     cells.forEach(function(v, i) {
         v.addEventListener("click", function(e){
             if(v.innerText === "" && !playerWin){
-                if (swt) { 
+                if (swt) {
                     v.innerText = "X"
                     clicks +=1
                     x += e.target.id
@@ -143,7 +143,7 @@ friendGame = () => {
                         winScreen("X")
                     }
                     playerWin = win(x) || win(o)
-                } else { 
+                } else {
                     v.innerText = "O"
                     clicks +=1
                     o += e.target.id
@@ -160,7 +160,7 @@ friendGame = () => {
             }
         })
     });
-}   
+}
 
 
 computerGame = () => {
@@ -173,14 +173,6 @@ computerGame = () => {
 
     document.querySelector("#box").style.display = "inherit";
     playAgain.style.display = "inherit";
-
-    function makeMove(move){
-        setTimeout(function(){
-            document.getElementById(move).innerText = "O"
-        }, 500)
-        o+=move;
-        swt = !swt
-    }
 
     function possibleWins(arr){
         posWinsArr = [];
@@ -195,7 +187,7 @@ computerGame = () => {
     }
 
     function getNumbers(str){
-        
+
         let nums = []
 
         if(str.includes("0")){
@@ -229,9 +221,19 @@ computerGame = () => {
         nums = nums.filter(function(item, pos, self) {
             return self.indexOf(item) == pos;
         })
-        return nums 
+        return nums
     }
-    
+
+    function makeMove(move){
+        if(!win(x) && clicks !== 9){
+            setTimeout(function(){
+                document.getElementById(move).innerText = "O"
+            }, 500)
+            o+=move;
+            swt = !swt
+        }
+    }
+
     function block(arr, x){
         let num = {
             moves: [],
@@ -251,18 +253,29 @@ computerGame = () => {
         return num
     }
 
-    function AIMove(arr){
-        cells.forEach(v => {
-            arr.filter(val => {
-                console.log(v)
-            })
-        })
+    function AIMove(){
+        if(o.length===1){
+            if(x.includes('4')){
+                makeMove(Number(o)+2)
+            }else{
+                makeMove(Number(o)+1)
+            }
+        }else{
+            const lastX = Number(x.slice(-1))
+            const lastO = Number(o.slice(-1))
+            if(lastX>lastO){
+                makeMove(lastX+1)
+            }else{
+                makeMove(lastO+1)
+            }
+        }
     }
 
     cells.forEach(function(v, i) {
         v.addEventListener("click", function(e){
+            playerWin = win(x) || win(o)
             if(v.innerText === "" && !playerWin){
-                if (swt) { 
+                if (swt) {
                     v.innerText = "X"
                     clicks +=1;
                     x += e.target.id
@@ -270,7 +283,6 @@ computerGame = () => {
                     if(win(x)){
                         winScreen("X")
                     }
-                    playerWin = win(x) || win(o)
 
                     if(x.length === 1){
                         if(cells[4].innerText === ""){
@@ -288,7 +300,7 @@ computerGame = () => {
                             if(blockMove){
                                 makeMove(blockMove)
                             }else{
-                                console.log(block(getNumbers(x),x), getNumbers(o))
+                                AIMove()
                             }
                         }
 
@@ -314,4 +326,3 @@ computerGame = () => {
 friend.addEventListener("click", friendGame)
 
 computer.addEventListener("click", computerGame)
-    
